@@ -12,11 +12,11 @@ export class ClienteService {
 
 
   constructor(private http: HttpClient, private configService: ConfigService) {
-    this.apiUrl = `${this.configService.getApiBaseUrl()}/Clientes`;
+    this.apiUrl = `${this.configService.getApiBaseUrl()}/Cliente`;
   }
 
   // Obtener todos los clientes
-  getClientes(): Observable<any> {
+  getClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(`${this.apiUrl}`);
   }
 
@@ -26,13 +26,13 @@ export class ClienteService {
   }
 
   // Crear un nuevo cliente
-  createCliente(cliente: Cliente): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, cliente);
+  createCliente(cliente: Cliente): Observable<Cliente> {
+    return this.http.post<Cliente>(`${this.apiUrl}`, cliente);
   }
 
   // Actualizar un cliente
-  updateCliente(id: number, cliente: Cliente): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, cliente);
+  updateCliente(cliente: Cliente): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${cliente.id}`, cliente);
   }
 
   // Eliminar un cliente

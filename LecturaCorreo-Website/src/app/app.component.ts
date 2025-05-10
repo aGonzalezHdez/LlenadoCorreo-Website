@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MainComponent } from './main/main.component';
+import {ClienteComponent} from './cliente/cliente.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  imports: [RouterOutlet, MainComponent, ClienteComponent],
+  standalone: true
 })
 export class AppComponent {
   title = 'LecturaCorreo-Website';

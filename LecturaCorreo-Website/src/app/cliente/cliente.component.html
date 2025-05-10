@@ -1,0 +1,31 @@
+<div class="clientes-container">
+  <h2>Clientes</h2>
+
+  <form (submit)="agregarCliente()">
+    <input type="text" [(ngModel)]="nuevoCliente.nombre" name="nombre" placeholder="Nombre del cliente" required>
+    <button type="submit">Agregar Cliente</button>
+  </form>
+
+  <table>
+    <thead>
+    <tr>
+      <th class="id-cell">ID</th>
+      <th>Nombre</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cliente of clientes">
+      <td class="id-cell">{{ cliente.id }}</td>
+      <td class="nombre-cell">
+    <span (dblclick)="activarEdicion(cliente.id)">
+      <input *ngIf="editandoId === cliente.id" [(ngModel)]="cliente.nombre"
+             (blur)="guardarEdicion(cliente)" (keyup.enter)="guardarEdicion(cliente)"
+             (keyup.escape)="cancelarEdicion(cliente)">
+      <span *ngIf="editandoId !== cliente.id">{{ cliente.nombre }}</span>
+    </span>
+        <span class="delete-icon" (click)="eliminarCliente(cliente.id)">🗑️</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

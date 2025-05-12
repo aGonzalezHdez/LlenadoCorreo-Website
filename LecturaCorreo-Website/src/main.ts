@@ -2,6 +2,8 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
 import { AppComponent } from './app/app.component';
 import { ConfigService } from './app/services/config.service';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes';
 
 fetch('assets/config.json')
   .then(response => response.json())
@@ -10,7 +12,8 @@ fetch('assets/config.json')
       providers: [
         provideHttpClient(),
         { provide: 'CONFIG', useValue: config },
-        ConfigService // Aseguramos que el servicio esté disponible
+        ConfigService, // ✅ Asegura que el servicio de configuración esté disponible
+        provideRouter(routes) // ✅ Agregamos las rutas aquí
       ]
     }).catch(err => console.error('Error al iniciar la aplicación:', err));
   })

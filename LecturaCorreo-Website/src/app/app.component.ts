@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet} from '@angular/router';
 import { MainComponent } from './main/main.component';
 import {ClienteComponent} from './cliente/cliente.component';
 import {ComentarioComponent} from './comentario/comentario.component';
 import {ConsultaComponent} from './consulta/consulta.component';
 import {EjecutivoComponent} from './ejecutivo/ejecutivo.component';
+import {InicioComponent} from './inicio/inicio.component';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,11 @@ import {EjecutivoComponent} from './ejecutivo/ejecutivo.component';
     ClienteComponent,
     ComentarioComponent,
     ConsultaComponent,
-    EjecutivoComponent],
+    EjecutivoComponent,
+    InicioComponent],
   standalone: true
 })
+
 export class AppComponent {
   title = 'LecturaCorreo-Website';
 }

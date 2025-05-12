@@ -4,16 +4,12 @@
   </div>
   <nav>
     <ul class="nav-menu">
-      <li><a href="#">Inicio</a></li>
-      <li><a href="#">Clientes</a></li>
-      <li><a href="#">Comentario</a></li>
-      <li><a href="#">Consulta</a></li>
-      <li><a href="#">Ejecutivo</a></li>
-      <li><a href="#">Configuración</a></li>
+      <li><a [routerLink]="'/'">Inicio</a></li>
+      <li><a [routerLink]="'/clientes'" >Clientes</a></li>
+      <li><a [routerLink]="'/comentarios'">Comentarios</a></li>
+      <li><a [routerLink]="'/consultas'">Consultas</a></li>
+      <li><a [routerLink]="'/ejecutivos'">Ejecutivos</a></li>
     </ul>
   </nav>
 </header>
-<body>
-  <app-cliente></app-cliente>
-</body>
-
+<router-outlet></router-outlet>

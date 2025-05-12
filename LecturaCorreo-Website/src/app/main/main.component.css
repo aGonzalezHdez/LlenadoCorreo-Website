@@ -33,3 +33,8 @@
   background-color: #555;
   border-radius: 5px;
 }
+.nav-menu a {
+  cursor: pointer; /* ✅ Asegura que el cursor cambie */
+  display: inline-block; /* ✅ Evita que los estilos oculten los enlaces */
+  text-decoration: none; /* ✅ Elimina subrayado innecesario */
+}

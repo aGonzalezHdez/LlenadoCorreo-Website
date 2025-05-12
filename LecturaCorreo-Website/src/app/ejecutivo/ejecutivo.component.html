@@ -1,1 +1,39 @@
-<p>ejecutivo works!</p>
+<div class="ejecutivos-container">
+  <h2>Comentarios</h2>
+
+  <form (submit)="agregarEjecutivo()">
+    <input type="text" [(ngModel)]="nuevoEjecutivo.idEmpleado" name="idEmpleado" placeholder="Id del ejecutivo" required>
+    <input type="text" [(ngModel)]="nuevoEjecutivo.nombre" name="nombre" placeholder="Nombre" required>
+    <button type="submit">Agregar Ejecutivo</button>
+  </form>
+
+  <table>
+    <thead>
+    <tr>
+      <th class="id-cell">ID</th>
+      <th>Clave</th>
+      <th>Nombre</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ejecutivo of ejecutivos">
+      <td class="id-cell">{{ ejecutivo.id }}</td>
+      <td class="idEmpleado-cell"><span (dblclick)="activarEdicion(ejecutivo.id)">
+      <input *ngIf="editandoId === ejecutivo.id" [(ngModel)]="ejecutivo.idEmpleado"
+             (blur)="guardarEdicion(ejecutivo)" (keyup.enter)="guardarEdicion(ejecutivo)"
+             (keyup.escape)="cancelarEdicion(ejecutivo)">
+      <span *ngIf="editandoId !== ejecutivo.id">{{ ejecutivo.idEmpleado }}</span>
+    </span></td>
+      <td class="descripcion-cell">
+    <span (dblclick)="activarEdicion(ejecutivo.id)">
+      <input *ngIf="editandoId === ejecutivo.id" [(ngModel)]="ejecutivo.nombre"
+             (blur)="guardarEdicion(ejecutivo)" (keyup.enter)="guardarEdicion(ejecutivo)"
+             (keyup.escape)="cancelarEdicion(ejecutivo)">
+      <span *ngIf="editandoId !== ejecutivo.id">{{ ejecutivo.nombre }}</span>
+    </span>
+        <span class="delete-icon" (click)="eliminarEjecutivo(ejecutivo.id)">🗑️</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

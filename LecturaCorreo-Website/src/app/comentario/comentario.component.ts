@@ -46,11 +46,11 @@ export class ComentarioComponent implements OnInit {
 
   }
 
-  activarEdicion(clienteId: number): void {
-    const cliente = this.comentarios.find(c => c.id === clienteId);
-    if (cliente) {
-      this.editandoId = clienteId;
-      this.comentarioOriginal = { ...cliente }; // ✅ Guarda una copia del estado original
+  activarEdicion(comentarioId: number): void {
+    const comentario = this.comentarios.find(c => c.id === comentarioId);
+    if (comentario) {
+      this.editandoId = comentarioId;
+      this.comentarioOriginal = { ...comentario }; // ✅ Guarda una copia del estado original
     }
   }
 

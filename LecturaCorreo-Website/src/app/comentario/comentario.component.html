@@ -1,1 +1,31 @@
-<p>comentario works!</p>
+<div class="comentarios-container">
+  <h2>Comentarios</h2>
+
+  <form (submit)="agregarComentario()">
+    <input type="text" [(ngModel)]="nuevoComentario.descripcion" name="descripcion" placeholder="Descripcion" required>
+    <button type="submit">Agregar Cliente</button>
+  </form>
+
+  <table>
+    <thead>
+    <tr>
+      <th class="id-cell">ID</th>
+      <th>Descripcion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let comentario of comentarios">
+      <td class="id-cell">{{ comentario.id }}</td>
+      <td class="descripcion-cell">
+    <span (dblclick)="activarEdicion(comentario.id)">
+      <input *ngIf="editandoId === comentario.id" [(ngModel)]="comentario.descripcion"
+             (blur)="guardarEdicion(comentario)" (keyup.enter)="guardarEdicion(comentario)"
+             (keyup.escape)="cancelarEdicion(comentario)">
+      <span *ngIf="editandoId !== comentario.id">{{ comentario.descripcion }}</span>
+    </span>
+        <span class="delete-icon" (click)="eliminarComentario(comentario.id)">🗑️</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

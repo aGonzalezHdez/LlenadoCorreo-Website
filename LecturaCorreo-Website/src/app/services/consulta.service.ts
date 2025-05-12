@@ -29,8 +29,8 @@ export class ConsultaService {
   }
 
   // Actualizar una consulta
-  updateConsulta(id: number, consulta: Consulta): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, consulta);
+  updateConsulta(consulta: Consulta): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${consulta.id}`, consulta);
   }
 
   // Eliminar una consulta

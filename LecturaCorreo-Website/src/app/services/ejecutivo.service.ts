@@ -29,8 +29,8 @@ export class EjecutivoService {
   }
 
   // Actualizar un ejecutivo
-  updateEjecutivo(id: number, ejecutivo: Ejecutivo): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, ejecutivo);
+  updateEjecutivo(ejecutivo: Ejecutivo): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${ejecutivo.id}`, ejecutivo);
   }
 
   // Eliminar un ejecutivo

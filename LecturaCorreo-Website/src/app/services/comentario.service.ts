@@ -30,8 +30,8 @@ export class ComentarioService {
   }
 
   // Actualizar un comentario
-  updateComentario(id: number, comentario: Comentario): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, comentario);
+  updateComentario(comentario: Comentario): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${comentario.id}`, comentario);
   }
 
   // Eliminar un comentario

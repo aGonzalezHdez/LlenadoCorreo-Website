@@ -14,7 +14,7 @@ export class EjecutivoService {
   }
 
   // Obtener todos los ejecutivos
-  getEjecutivos(): Observable<any> {
+  getEjecutivos(): Observable<Ejecutivo[]> {
     return this.http.get<Ejecutivo[]>(`${this.apiUrl}`);
   }
 

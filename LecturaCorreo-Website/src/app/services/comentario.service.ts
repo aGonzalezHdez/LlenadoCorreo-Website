@@ -15,7 +15,7 @@ export class ComentarioService {
   }
 
   // Obtener todos los comentarios
-  getComentarios(): Observable<any> {
+  getComentarios(): Observable<Comentario[]> {
     return this.http.get<Comentario[]>(`${this.apiUrl}`);
   }
 

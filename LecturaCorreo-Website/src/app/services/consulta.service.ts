@@ -14,7 +14,7 @@ export class ConsultaService {
   }
 
   // Obtener todos los consultas
-  getConsultas(): Observable<any> {
+  getConsultas(): Observable<Consulta[]> {
     return this.http.get<Consulta[]>(`${this.apiUrl}`);
   }
 

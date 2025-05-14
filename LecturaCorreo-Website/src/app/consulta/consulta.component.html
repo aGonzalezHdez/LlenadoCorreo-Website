@@ -1,1 +1,138 @@
-<p>consulta works!</p>
+<div class="consultas-container">
+  <h2>Consultas</h2>
+
+  <!-- 🔥 Botón para abrir el formulario modal -->
+  <button (click)="abrirModal()">Nueva Consulta</button>
+
+  <!-- 🔥 Modal del formulario -->
+  <div class="modal" *ngIf="modalAbierto">
+    <div class="modal-content">
+      <span class="close" (click)="cerrarModal()">×</span>
+
+      <h2>{{ editandoConsulta ? 'Actualizar Consulta' : 'Crear Nueva Consulta' }}</h2>
+
+      <form [formGroup]="consultaForm">
+        <div class="form-group">
+          <label>Fecha llegada</label>
+          <input name="fechaLlegada" formControlName="fechaLlegada" type="date">
+        </div>
+
+        <div class="form-group">
+          <label>Hora llegada</label>
+          <input name="horaLlegada" formControlName="horaLlegada" type="time">
+        </div>
+
+        <div class="form-group">
+          <label>Correo</label>
+          <input name="correoCliente" formControlName="correoCliente" type="email" placeholder="Correo del cliente">
+        </div>
+
+        <div class="form-group">
+          <label>Título del correo</label>
+          <input name="tituloCorreo" formControlName="tituloCorreo" type="text" placeholder="Título">
+        </div>
+
+        <div class="form-group">
+          <label>Partidas</label>
+          <input name="partidas" formControlName="partidas" type="text" placeholder="Partidas">
+        </div>
+
+        <div class="form-group">
+          <label>Fecha Salida</label>
+          <input name="fechaCierre" formControlName="fechaCierre" type="date">
+        </div>
+
+        <div class="form-group">
+          <label>Hora salida</label>
+          <input name="horaCierre" formControlName="horaCierre" type="time">
+        </div>
+
+        <div class="form-group">
+          <label>Dias de respuesta</label>
+          <input name="diasRespuesta" formControlName="diasRespuesta" type="text" placeholder="Dias de respuesta">
+        </div>
+
+        <div class="form-group">
+          <label>Referencia</label>
+          <input name="referencia" formControlName="referencia" type="text" placeholder="Referencia">
+        </div>
+
+        <div class="form-group">
+          <label>Razon Social</label>
+          <input name="razonSocial" formControlName="razonSocial" type="text" placeholder="Razon Social">
+        </div>
+
+        <div class="form-group">
+          <label>Cliente</label>
+          <select name="clienteId" formControlName="clienteId">
+            <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nombre }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Comentario</label>
+          <select name="comentariosId" formControlName="comentariosId">
+            <option *ngFor="let comentario of comentarios" [value]="comentario.id">{{ comentario.descripcion }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Atendido por</label>
+          <select name="atendidoPorId" formControlName="atendidoPorId">
+            <option *ngFor="let ejecutivo of ejecutivos" [value]="ejecutivo.id">{{ ejecutivo.nombre }}</option>
+          </select>
+        </div>
+
+        <!-- 🔥 Botones de acción -->
+        <div class="modal-buttons">
+          <button type="button" (click)="editandoConsulta ? actualizarConsulta() : agregarConsulta()">
+            {{ editandoConsulta ? 'Actualizar' : 'Guardar Consulta' }}
+          </button>
+          <button type="button" class="cancel-button" (click)="cerrarModal()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 🔥 Tabla de consultas -->
+  <table>
+    <thead>
+    <tr>
+      <th class="id-cell">ID</th>
+      <th>Fecha llegada</th>
+      <th>Hora llegada</th>
+      <th>Correo</th>
+      <th>Título de correo</th>
+      <th>Partidas</th>
+      <th>Fecha cierre</th>
+      <th>Hora cierre</th>
+      <th>Días de respuesta</th>
+      <th>Referencia</th>
+      <th>Razón Social</th>
+      <th>Cliente</th>
+      <th>Comentarios</th>
+      <th>Atendido por</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let consulta of consultas" (dblclick)="editarConsulta(consulta)">
+      <td class="id-cell">{{ consulta.id }}</td>
+      <td class="info-cell">{{ consulta.fechaLlegada }}</td>
+      <td class="info-cell">{{ consulta.horaLlegada }}</td>
+      <td class="info-cell">{{ consulta.correoCliente }}</td>
+      <td class="info-cell">{{ consulta.tituloCorreo }}</td>
+      <td class="info-cell">{{ consulta.partidas }}</td>
+      <td class="info-cell">{{ consulta.fechaCierre }}</td>
+      <td class="info-cell">{{ consulta.horaCierre }}</td>
+      <td class="info-cell">{{ consulta.diasRespuesta }}</td>
+      <td class="info-cell">{{ consulta.referencia }}</td>
+      <td class="info-cell">{{ consulta.razonSocial }}</td>
+      <td class="info-cell">{{ obtenerNombreCliente(consulta.clienteId) }}</td>
+      <td class="info-cell">{{ obtenerComentario(consulta.comentariosId) }}</td>
+      <td class="info-cell">{{ obtenerNombreEjecutivo(consulta.atendidoPorId) }}
+        <span class="delete-icon" (click)="eliminarConsulta(consulta.id)">🗑️</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
